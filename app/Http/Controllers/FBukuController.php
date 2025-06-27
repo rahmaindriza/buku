@@ -9,7 +9,7 @@ class FBukuController extends Controller
 {
     public function index()
     {
-        $allBuku = Buku::all();
+        $allBuku = Buku::latest()->paginate(12);
         return view('frontend.index', compact('allBuku'));
     }
 

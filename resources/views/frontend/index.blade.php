@@ -23,11 +23,12 @@
     {{-- Hero Section --}}
     <section class="bg-blue-500 text-white py-12">
         <div class="container max-w-6x1 mx-auto text-center">
-            <h1 class="text-4x1 font-bold mb-4">Selamat Datang di R Library</h1>
+            <h1 class="text-4x1 font-bold mb-4">Selamat Datang di RI Library</h1>
             <h1 class="text-6x1 font-bold mb-4">RI-Library</h1>
             <P class="text-lg">Jelajahi berbagai koleksi buku-buku terbaik dari kami.</P>
          </div>
     </section>
+
     <section class="container max-w-6x1 mx-auto py-6">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
             @foreach ($allBuku as $b)
@@ -52,7 +53,13 @@
 
             @endforeach
         </div>
+        <div class="mt-6">{{ $allBuku->links() }}</div>
     </section>
+
+    <footer class="text-center bg-blue-800 py-5 text-white">
+        <p>Copyright &copy; 2025 Rahma Indriza Syafitri</p>
+
+    </footer>
 
 
 </body>
