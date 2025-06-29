@@ -42,6 +42,6 @@ class FBukuController extends Controller
 
     public function detail_buku(Buku  $buku)
     {
-        //
+        return view('frontend.detail_buku', compact('buku'));
     }
 }

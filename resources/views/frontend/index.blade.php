@@ -1,25 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>RI Library</title>
-    @vite('resources/css/app.css')
-</head>
-<body class="bg-gray-100">
 
-    {{-- navbar --}}
-    <nav class="bg-blue-600 text-white py-4">
-        <div class="container max-w-6x1 mx-auto flex justify-between items-center">
-            <a href="{{ route('homepage')}}" class="text-2x1 font-bold">RI-Libarary</a>
-            <div>
-                <a href="{{ route('homepage') }}" class="px-4">Homepage</a>
-                <a href="{{ route('login') }}">Login Admin</a>
-            </div>
-        </div>
-    </nav>
+@extends('frontend.master')
+@section('title', 'Katalog Buku')
 
+@section('content')
     {{-- Hero Section --}}
     <section class="bg-blue-500 text-white py-12">
         <div class="container max-w-6x1 mx-auto text-center">
@@ -29,31 +12,34 @@
          </div>
     </section>
 
-    {{--section filter dan pencarian--}}
-    <section class="container max-w-6x1 mx-auto px-4 py-6">
-        <form action="{{ route('homepage') }}" method="get">
-            <select name="kategori" class="p-2 border rounded">
-                <option value="">Semua kategori</option>
-                @foreach ($kategori as $k)
-                <option value="{{ $k->id }}" {{ request('kategori') == $k->id ? 'selected' : ''}}>
+   {{--section filter dan pencarian--}}
+<section class="container max-w-6x1 mx-auto px-4 py-6">
+    <form action="{{ route('homepage') }}" method="get" class="flex flex-wrap items-center gap-3">
+        <select name="kategori" class="p-2 border rounded">
+            <option value="">Semua Kategori</option>
+            @foreach ($kategori as $k)
+                <option value="{{ $k->id }}" {{ request('kategori') == $k->id ? 'selected' : '' }}>
                     {{ $k->nama_kategori }}
                 </option>
-                @endforeach
-            </select>
+            @endforeach
+        </select>
 
-            <select name="penerbit" class="p-2 border rounded">
-                <option value="">Semua Penerbit</option>
-                @foreach ($penerbit as $p)
-                <option value="{{ $p->id }}" {{ request('penerbit') == $p->id ? 'selected' : ''}}>
+        <select name="penerbit" class="p-2 border rounded">
+            <option value="">Semua Penerbit</option>
+            @foreach ($penerbit as $p)
+                <option value="{{ $p->id }}" {{ request('penerbit') == $p->id ? 'selected' : '' }}>
                     {{ $p->nama_penerbit }}
                 </option>
-                @endforeach
-            </select>
+            @endforeach
+        </select>
 
-            <input type="text" name="search" class="p-2 border rounded" placeholder="Masukkan kata kunci..." value="{{ request('search') }}">
+<input type="text" name="search" class="p-2 border rounded w-120" placeholder="Masukkan kata kunci..." value="{{ request('search') }}">
 
-            <button type="submit" class="bg-blue-600 px-5 py-2 rounded">Terapkan</button>
-    </section>
+
+        <button type="submit" class="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700">Terapkan</button>
+    </form>
+</section>
+
 
     {{-- section katalog --}}
     <section class="container max-w-6x1 mx-auto py-6">
@@ -71,7 +57,8 @@
                 </div>
 
                 <div>
-                    <h2 class="text-lg font-semibold text-blue-800">{{ $b->judul}}</h2>
+                    <h2 class="text-lg font-semibold text-blue-800"><a
+                        href="{{ route('detail-buku', $b->id) }}">{{ $b->judul }}</a></h2>
                     <p class="text-gray-600 text-sm">Pengarang: {{ $b->pengarang}}</p>
                      <p class="text-gray-600 text-sm">Kategori: {{ $b->kategori->nama_kategori}}</p>
                     <p class="text-gray-600 text-sm">Penerbit: {{ $b->penerbit->nama_penerbit}}</p>
@@ -84,11 +71,5 @@
         <div class="mt-6">{{ $buku->links() }}</div>
     </section>
 
-    <footer class="text-center bg-blue-800 py-5 text-white">
-        <p>Copyright &copy; 2025 Rahma Indriza Syafitri</p>
+    @endsection
 
-    </footer>
-
-
-</body>
-</html>
