@@ -31,7 +31,7 @@
         <tr class="bg-gray-100">
             <th class="custom_th">No.</th>
             <th class="custom_th">Nama Anggota</th>
-            <th class="custom_th">Tanggal </th>
+            <th class="custom_th">Tanggal Peminjaman </th>
             <th class="custom_th">Rencana Kembali</th>
             <th class="custom_th">Status Pengembalian</th>
             <th class="custom_th">Aksi</th>
@@ -41,9 +41,9 @@
         @foreach ($allPeminjaman as $key => $row)
         <tr>
            <td class="custom_td">{{ $key + $allPeminjaman->firstItem() }}</td>
+           <td class="custom_td">{{ $row->anggota->nama_anggota }}</td>
             <td class="custom_td">{{ $row->tgl_peminjaman }}</td>
            <td class="custom_td">{{ $row->tgl_rencana_kembali }}</td>
-            <td class="custom_td">{{ $row->anggota->nama_anggota }}</td>
             <td class="custom_td">{{ $row->status_pengembalian }}</td>
             <td class="custom_td">
                 <form action="{{ route('peminjaman.destroy', $row->id) }}"

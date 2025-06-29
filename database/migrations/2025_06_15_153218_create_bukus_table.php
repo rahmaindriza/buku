@@ -16,10 +16,15 @@ return new class extends Migration
             $table->string('judul', 255);
             $table->string('pengarang', 100);
              $table->year('tahun_terbit');
-             $table->foreignId('kategori_id')->constrained()->onUpdate('cascade')
-             ->onDelete('restrict');
-              $table->foreignId('penerbit_id')->constrained()->onUpdate('cascade')
-             ->onDelete('restrict');
+            $table->foreignId('kategori_id')
+          ->constrained('indri_kategoris') // <- sesuaikan nama tabel
+          ->onUpdate('cascade')
+          ->onDelete('restrict');
+
+    $table->foreignId('penerbit_id')
+          ->constrained('indri_penerbits') // <- sesuaikan nama tabel
+          ->onUpdate('cascade')
+          ->onDelete('restrict');
             $table->timestamps();
         });
     }

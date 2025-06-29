@@ -27,10 +27,13 @@
             <tr>
                 <td class="custom_td">{{ $key + $allBuku->firstItem() }}</td>
                 <td class="custom_td">
-                    @if ($r->cover)
-                        <img src="{{ asset('storage/' . $r->cover) }}" alt="Cover" width="80">
-                    @endif
-                </td>
+    @if ($r->cover)
+        <img src="{{ asset('storage/' . $r->cover) }}" alt="Cover" width="80">
+    @else
+        <img src="{{ asset('img/default_cover.jpg') }}" alt="Default Cover" width="80">
+    @endif
+</td>
+
                 <td class="custom_td">{{ $r->judul }}</td>
                 <td class="custom_td">{{ $r->pengarang }}</td>
                 <td class="custom_td">{{ $r->tahun_terbit }}</td>
