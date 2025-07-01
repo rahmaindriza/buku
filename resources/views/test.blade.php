@@ -19,7 +19,7 @@
             <nav class="flex-1">
                 <ul class="space-y-2 p-4">
                     <li>
-                        <a href="{{ route('dashboard')}}" class="flex items-center p-2 rounded
+                        <a href="{{ route('welcome')}}" class="flex items-center p-2 rounded
                          hover:bg-gray-700 ">
                          <span class="material-icons">dashboard</span>
                             <span class="ml-3">Dashboard</span>

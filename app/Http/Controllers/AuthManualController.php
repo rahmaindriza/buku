@@ -10,7 +10,7 @@ class AuthManualController extends Controller
 {
     public function index()
     {
-        
+
          return view('manual-auth.login');
     }
 
