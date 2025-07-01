@@ -18,6 +18,14 @@ class DashboardController extends Controller
             'jmlSemuaBuku' => Buku::count(),
             'jmlAnggota' => Anggota::count(),
         ];
-        return view('welcome',compact('data'));
+
+        $kategori = Kategori::withCount('bukus')->get();
+        //dd($kategori);
+        $namaKategori = $kategori->pluck('nama_kategori')->toArray();
+        // dd($namakategori);
+
+        // jumlah buku perkategori
+        $jumlahBuku = $kategori->pluck('bukus_count')->toArray();
+        return view('welcome',compact('data', 'namaKategori', 'jumlahBuku'));
     }
 }

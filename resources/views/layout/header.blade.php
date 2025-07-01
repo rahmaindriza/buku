@@ -7,10 +7,19 @@
     <title>Aplikasi Manajemen Buku</title>
     <link rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Icons" />
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     @vite('resources/css/app.css')
 </head>
-<body class="bg-gray-100">
-    <div class="flex h-screen">
+
+<style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+    </style>
+
+<body class="bg-gray-100 h-full">
+    <div class="flex min-h-screen">
         {{-- sidebar --}}
         <aside class="w-64 bg-gray-800 text-white flex flex-col">
             <div class="p-4 text-center rext-lg font-bold bg-gray-900">
