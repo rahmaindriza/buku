@@ -30,5 +30,22 @@ class UserController extends Controller
     return redirect()->route('user.index'); // ubah ke route data user
 }
 
+public function show($id)
+{
+    $user = User::findOrFail($id);
+    return view('user.show', compact('user'));
+}
+
+public function destroy($id)
+{
+    $user = User::findOrFail($id);
+    if ($user->role === 'admin') {
+        return back()->with('error', 'Admin tidak bisa dihapus.');
+    }
+    $user->delete();
+    return redirect()->route('user.index')->with('success', 'User berhasil dihapus.');
+}
+
+
 
 }

@@ -51,6 +51,10 @@ Route::post('/logout', [AuthManualController::class, 'logout'])->name('logout');
 Route::put('/user/{id}/approve', [UserController::class, 'approve'])->name('user.approve');
 Route::get('/data-user', [UserController::class, 'index'])->name('user.index');
 
+//show
+Route::resource('user', UserController::class)->only(['index', 'show', 'destroy']);
+
+
 
 //route untuk test
 Route::get('/tes', function () {
