@@ -8,6 +8,7 @@ use App\Http\Controllers\FBukuController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PenerbitController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',[FBukuController::class,'index'])->name('homepage');
@@ -38,10 +39,18 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
 
 //route untuk login dan logout
-
 Route::get('/login', [AuthManualController::class, 'index'])->name('login');
-Route::post('/login', [AuthManualController::class, 'loginProses'])->name('loginProses');
+Route::post('/login-proses', [AuthManualController::class, 'loginProses'])->name('login.proses');
+Route::post('/register-proses', [AuthManualController::class, 'registerProses'])->name('register.proses');
+// Route::get('/login', [AuthManualController::class, 'index'])->name('login');
+// Route::post('/login', [AuthManualController::class, 'loginProses'])->name('loginProses');
 Route::post('/logout', [AuthManualController::class, 'logout'])->name('logout');
+
+
+//route user.aproove
+Route::put('/user/{id}/approve', [UserController::class, 'approve'])->name('user.approve');
+Route::get('/data-user', [UserController::class, 'index'])->name('user.index');
+
 
 //route untuk test
 Route::get('/tes', function () {

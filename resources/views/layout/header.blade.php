@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Aplikasi Manajemen Buku</title>
-    <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Icons" />
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     @vite('resources/css/app.css')
 </head>
 
 <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-    </style>
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+</style>
+
 @php
     function getInitials($name) {
         $words = explode(' ', $name);
@@ -73,6 +73,16 @@
                             <span class="ml-3">Peminjaman Buku</span>
                         </a>
                     </li>
+
+                    {{-- Hanya tampil jika user login dan role admin --}}
+                    @if(Auth::check() && Auth::user()->role === 'admin')
+                        <li>
+                            <a href="{{ route('user.index')}}" class="flex items-center p-2 rounded hover:bg-gray-700">
+                                <span class="material-icons">supervisor_account</span>
+                                <span class="ml-3">Data User</span>
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </nav>
 
@@ -90,27 +100,29 @@
         <div class="flex-1 flex flex-col">
             <header class="bg-white shadow flex items-center justify-between p-4">
                 <h1 class="text-xl font-bold">Aplikasi Peminjaman Buku</h1>
-                <div class="flex items-center space-x-4">
-                    <div class="relative group">
-                        <button class="flex items-center focus:outline-none">
-                            {{-- Avatar inisial user --}}
-                            <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
-                                {{ getInitials(Auth::user()->name) }}
-                            </div>
-                            <span class="ml-2 text-gray-700 font-medium">{{ Auth::user()->name }}</span>
-                        </button>
 
-                        {{-- dropdown menu --}}
-                        <div class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg hidden group-hover:block">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit Profil</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit Settings</a>
+                @if(Auth::check())
+                    <div class="flex items-center space-x-4">
+                        <div class="relative group">
+                            <button class="flex items-center focus:outline-none">
+                                {{-- Avatar inisial user --}}
+                                <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
+                                    {{ getInitials(Auth::user()->name) }}
+                                </div>
+                                <span class="ml-2 text-gray-700 font-medium">{{ Auth::user()->name }}</span>
+                            </button>
+
+                            {{-- dropdown menu --}}
+                            <div class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg hidden group-hover:block">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit Profil</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit Settings</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
             </header>
 
             {{-- main content --}}
             <main class="flex-1 p-6">
                 <div class="bg-white rounded shadow p-4">
-
-            
+                     @yield('content')

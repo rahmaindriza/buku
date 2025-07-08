@@ -61,6 +61,14 @@
                             <span class="ml-3">Peminjaman Buku</span>
                         </a>
                     </li>
+
+                    <li>
+                        <a href="{{ route('user.index')}}" class="flex items-center p-2 rounded
+                         hover:bg-gray-700 ">
+                         <span class="material-icons">menu_book</span>
+                            <span class="ml-3">Data user</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
 
