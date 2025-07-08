@@ -15,29 +15,29 @@ class AuthManualController extends Controller
     }
 
      public function loginProses(Request $request)
-    {
-        $credentials = $request->validate(
-            [
-                'email' => 'required|email',
-                'password' => 'required',
-            ],[
-                'email.required' => 'Email harus diisi',
-                'email.email' => 'Format email tidak valid',
-                'password.required' => 'Password harus diisi',
-            ]);
+{
+    $credentials = $request->validate(
+        [
+            'email' => 'required|email',
+            'password' => 'required',
+        ],[
+            'email.required' => 'Email harus diisi',
+            'email.email' => 'Format email tidak valid',
+            'password.required' => 'Password harus diisi',
+        ]);
 
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+        Alert::success('Selamat!', 'Anda Telah Berhasil Masuk sistem!');
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            Alert::success('Selamat!', 'Anda Telah Berhasil Masuk sistem!');
-            return redirect()->route('dashboard');
-        }
-           //Alert::alert('Gagal Login', 'Username atau Password anda salah!', 'error');
-           //Alert::error('Gagal Login', 'Username atau Password anda salah!');
-            Alert::toast('Username atau Password anda salah! ', ' error')->autoClose(5000);
+        // ⬇️ Logika redirect berdasarkan role
+      return redirect()->route('dashboard');
 
-           return back();
     }
+
+    Alert::toast('Username atau Password anda salah! ', ' error')->autoClose(5000);
+    return back();
+}
 
      public function logout(Request $request)
     {

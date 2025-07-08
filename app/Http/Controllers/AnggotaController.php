@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Anggota;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AnggotaController extends Controller
 {
@@ -30,10 +31,14 @@ class AnggotaController extends Controller
 
     public function create()
     {
+
         return view('anggota.create');
     }
+
     public function store(Request $request)
     {
+        
+
         $valdata = $request->validate([
             'nama_anggota' => 'required',
             'alamat' => 'required',
@@ -68,6 +73,9 @@ class AnggotaController extends Controller
 
     public function destroy(Anggota $anggota)
     {
+        if (Auth::user()->role != 'admin') {
+        abort(403);
+        }
         $anggota->delete();
         return redirect()->route('anggota.index')->with('success', 'Anggota berhasil dihapus.');
     }

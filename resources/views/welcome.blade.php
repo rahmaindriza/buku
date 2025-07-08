@@ -4,9 +4,21 @@
 
 <section class="container mx-auto mb-8">
 
+<h2 class="text-xl font-bold">
+    @if(Auth::user()->role === 'admin')
+        Selamat Datang, Admin {{ Auth::user()->name }} 👋
+    @else
+        Selamat Datang di PERPUSKU, {{ Auth::user()->name }} 📚
+    @endif
+</h2>
 
-<h2 class="text-xl font-bold">Selamat Datang {{ Auth::user()->name }}</h2>
-<p class="font-medium">Gunakan menu di sebelah kiri untuk mengelola data </p>
+<p class="font-medium mt-2">
+    @if(Auth::user()->role === 'admin')
+        Anda dapat mengelola seluruh data perpustakaan. Silakan gunakan menu di sebelah kiri untuk memulai.
+    @else
+        Anda dapat melihat buku dan melakukan peminjaman. Gunakan menu di sebelah kiri untuk mulai menggunakan PERPUSKU.
+    @endif
+</p>
 
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-6">

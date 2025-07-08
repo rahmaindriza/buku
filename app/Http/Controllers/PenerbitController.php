@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\penerbit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class penerbitController extends Controller
@@ -37,6 +38,9 @@ class penerbitController extends Controller
      */
     public function create()
     {
+        if (Auth::user()->role != 'admin') {
+         abort(403);
+    }
         return view('penerbit.create');
     }
 
@@ -45,6 +49,9 @@ class penerbitController extends Controller
      */
     public function store(Request $request)
     {
+        if (Auth::user()->role != 'admin') {
+        abort(403);
+        }
         //buat validasi
        $validateData = $request->validate([
             'nama_penerbit' => 'required|string|max:100',
@@ -70,6 +77,9 @@ class penerbitController extends Controller
      */
     public function edit(penerbit $penerbit)
     {
+        if (Auth::user()->role != 'admin') {
+        abort(403);
+        }
         return view('penerbit.edit', compact('penerbit'));
     }
 
@@ -94,6 +104,9 @@ class penerbitController extends Controller
      */
     public function destroy(penerbit $penerbit)
     {
+        if (Auth::user()->role != 'admin') {
+        abort(403);
+        }
         //hapus data
         $penerbit->delete();
 

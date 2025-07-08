@@ -16,14 +16,16 @@
     <div class="mb-3">
         <label for="" class="block font-bold mb-2"> Tanggal Peminjaman</label>
         <input type="date" name="tgl_peminjaman"  class="w-full px-3 py-2 border border-gray-300 rounded"
-            value="{{date('Y-m-d')}}">
+            value="{{ date('Y-m-d') }}"
+        min="{{ date('Y-m-d') }}">
     </div>
 
     <div class="mb-3">
     <label for="" class="block font-bold mb-2">Tanggal Rencana Pengembalian</label>
     <input type="date" name="tgl_rencana_kembali"
         class="w-full px-3 py-2 border border-gray-300 rounded"
-        required>
+        required
+        min="{{ date('Y-m-d') }}">
 </div>
 
 

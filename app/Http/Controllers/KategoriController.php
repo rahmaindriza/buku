@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
 
 class KategoriController extends Controller
 {
@@ -38,6 +39,9 @@ class KategoriController extends Controller
      */
     public function create()
     {
+        if (Auth::user()->role != 'admin') {
+         abort(403);
+}
         return view('kategori.create');
     }
 
@@ -46,6 +50,9 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
+        if (Auth::user()->role != 'admin') {
+         abort(403);
+}
         //buat validasi
        $validateData = $request->validate([
             'nama_kategori' => 'required|string|max:100',
@@ -71,6 +78,9 @@ class KategoriController extends Controller
      */
     public function edit(Kategori $kategori)
     {
+        if (Auth::user()->role != 'admin') {
+        abort(403);
+        }
         return view('kategori.edit', compact('kategori'));
     }
 
@@ -95,6 +105,9 @@ class KategoriController extends Controller
      */
     public function destroy(Kategori $kategori)
     {
+        if (Auth::user()->role != 'admin') {
+        abort(403);
+        }
         //hapus data
         $kategori->delete();
 

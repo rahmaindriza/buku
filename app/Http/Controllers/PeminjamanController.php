@@ -7,6 +7,7 @@ use App\Models\Buku;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PeminjamanController extends Controller
@@ -48,6 +49,7 @@ class PeminjamanController extends Controller
      */
     public function create()
     {
+
         $anggota = Anggota::all();
         $bukus = Buku::all(); // Assuming you have a Buku model for books
         return view('peminjaman.create', compact('anggota','bukus'));
@@ -57,12 +59,17 @@ class PeminjamanController extends Controller
      */
    public function store(Request $request)
 {
+
+
     $valData = $request->validate([
         'tgl_peminjaman' => 'required|date',
         'tgl_rencana_kembali' => 'required|date|after_or_equal:tgl_peminjaman',
         'anggota_id' => 'required|exists:indri_anggotas,id',
         'buku_ids' => 'required|array',
         'buku_ids.*' => 'exists:indri_bukus,id',
+    ], [
+        'tgl_peminjaman.after_or_equal' => 'Tanggal peminjaman tidak boleh sebelum hari ini.',
+        'tgl_rencana_kembali.after_or_equal' => 'Tanggal rencana kembali tidak boleh sebelum hari ini.',
     ]);
 
     $peminjaman = Peminjaman::create([
@@ -93,6 +100,7 @@ class PeminjamanController extends Controller
      */
     public function edit($id)
     {
+
         // Logic to show form for editing a specific peminjaman
     }
 
@@ -148,6 +156,9 @@ public function update(Request $request, Peminjaman $peminjaman)
      */
     public function destroy(Peminjaman $peminjaman)
     {
+        if (Auth::user()->role != 'admin') {
+        abort(403);
+        }
         $peminjaman->delete();
         return redirect()->route('peminjaman.index')->with('success', 'Peminjaman berhasil dihapus.');
     }

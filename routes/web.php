@@ -38,6 +38,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
 
 //route untuk login dan logout
+
 Route::get('/login', [AuthManualController::class, 'index'])->name('login');
 Route::post('/login', [AuthManualController::class, 'loginProses'])->name('loginProses');
 Route::post('/logout', [AuthManualController::class, 'logout'])->name('logout');

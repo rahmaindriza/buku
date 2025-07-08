@@ -6,6 +6,7 @@ use App\Models\Buku;
 use App\Models\Kategori;
 use App\Models\Penerbit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -43,6 +44,9 @@ class BukuController extends Controller
      */
     public function create()
     {
+        if (Auth::user()->role != 'admin') {
+        abort(403);
+        }
         $penerbit = Penerbit::all();
         $kategori = Kategori::all();
         return view('buku.create', compact('penerbit', 'kategori'));
@@ -53,6 +57,9 @@ class BukuController extends Controller
      */
     public function store(Request $request)
 {
+    if (Auth::user()->role != 'admin') {
+        abort(403);
+        }
     // Validasi input
     $validateData = $request->validate([
         'judul' => 'required|string|max:100',
@@ -92,6 +99,9 @@ class BukuController extends Controller
      */
     public function edit(Buku $buku)
     {
+        if (Auth::user()->role != 'admin') {
+        abort(403);
+        }
         $penerbit = Penerbit::all();
         $kategori = Kategori::all();
         return view('buku.edit', compact('buku', 'penerbit', 'kategori'));
@@ -139,6 +149,10 @@ class BukuController extends Controller
      */
     public function destroy(Buku $buku)
     {
+        if (Auth::user()->role != 'admin') {
+        abort(403);
+        }
+        
         if($buku->cover && Storage::exists('public/' . $buku->cover)) {
             // Hapus file cover jika ada
             Storage::delete('public/' . $buku->cover);

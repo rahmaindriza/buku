@@ -23,7 +23,7 @@
         {{-- sidebar --}}
         <aside class="w-64 bg-gray-800 text-white flex flex-col">
             <div class="p-4 text-center rext-lg font-bold bg-gray-900">
-                Panel Admin
+                PERPUSKU
             </div>
             <nav class="flex-1">
                 <ul class="space-y-2 p-4">
