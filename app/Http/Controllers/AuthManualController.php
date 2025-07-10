@@ -85,6 +85,6 @@ class AuthManualController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         Alert::toast('Anda Telah Logout!', 'success')->autoClose(5000);
-        return redirect()->route('login');
+        return redirect()->route('homepage');
     }
 }

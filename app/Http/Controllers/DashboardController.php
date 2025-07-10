@@ -18,7 +18,7 @@ class DashboardController extends Controller
 
         if ($user->role === 'user' && !$user->is_approved) {
             Auth::logout();
-            return redirect()->route('login')->withErrors([
+            return redirect()->route('homepage')->withErrors([
                 'email' => 'Akun Anda belum disetujui oleh admin.'
             ]);
         }
