@@ -17,7 +17,10 @@
     <thead>
         <tr class="bg-gray-100">
             <th class="custom_th">No.</th>
-            <th class="custom_th">Nama Anggota</th>
+            <th class="custom_th">NIS</th>
+            <th class="custom_th">Nama</th>
+            <th class="custom_th">Kelas</th>
+            <th class="custom_th">Jenis Kelamin</th>
             <th class="custom_th">Alamat</th>
             <th class="custom_th">No. Telepon</th>
             <th class="custom_th">Aksi</th>
@@ -27,7 +30,10 @@
         @foreach ($allAnggota as $key => $row)
             <tr>
                 <td class="custom_td">{{ $key + $allAnggota->firstItem() }}</td>
+                <td class="custom_td">{{ $row->nis }}</td>
                 <td class="custom_td">{{ $row->nama_anggota }}</td>
+                <td class="custom_td">{{ $row->kelas }}</td>
+                <td class="custom_td">{{ $row->jenis_kelamin }}</td>
                 <td class="custom_td">{{ $row->alamat }}</td>
                 <td class="custom_td">{{ $row->no_telepon }}</td>
                 <td class="custom_td" width="210px">
