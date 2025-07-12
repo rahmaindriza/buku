@@ -1,41 +1,51 @@
-
 @extends('frontend.master')
-@section('title', 'Katalog Buku')
+@section('title', 'Detail Buku')
 
 @section('content')
 
+<section class="container max-w-6xl mx-auto px-4 py-10">
+    <div class="bg-white rounded-xl shadow-lg p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
 
-   {{--section Detail Buku --}}
-<section class="container max-w-6x1 mx-auto  py-6">
-    <div class="bg-white shadow-lg p-6 flex rounded-lg flex-col md:flex-row gap-6">
-                <div class="w-full md:w-full">
-                    @if ($buku->cover)
-                        <img src="{{ asset('storage/' . $buku->cover)}}" alt="Cover Buku"
-                            class="w-full h-auto rouded-md object-cover">
-                    @else
-                        <img src="{{ asset('img/default_cover.jpg') }}" alt="Cover Buku"
-                           class="w-full h-auto rouded-md object-cover">
-                    @endif
-                </div>
+        {{-- Cover Buku --}}
+        <div>
+            <div class="relative">
+                @if ($buku->cover)
+                    <img src="{{ asset('storage/' . $buku->cover) }}" alt="Cover Buku"
+                        class="w-full rounded-lg shadow-lg object-cover">
+                @else
+                    <img src="{{ asset('img/default_cover.jpg') }}" alt="Default Cover"
+                        class="w-full rounded-lg shadow-lg object-cover">
+                @endif
 
-                <div>
-                    <h2 class="text-lg font-semibold text-blue-800">{{ $buku->judul }}</h2>
-                    <p class="text-gray-600 text-sm">Pengarang: {{ $buku->pengarang}}</p>
-                    <p class="text-gray-600 text-sm">Kategori: {{ $buku->kategori->nama_kategori}}</p>
-                    <p class="text-gray-600 text-sm">Penerbit: {{ $buku->penerbit->nama_penerbit}}</p>
-                    <p class="text-gray-600 text-sm">Tahun: {{ $buku->tahun_terbit}}</p>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                         Lorem Ipsum has been the industry's standard dummy
-                          ever since the 1500s, when an unknown printer took
-                          a galley of type and scrambled it to make a type specimen book.</p>
+                {{-- Badge Tahun --}}
+                @if($buku->tahun_terbit == date('Y'))
+                    <span class="absolute top-3 left-3 bg-green-600 text-white text-xs px-3 py-1 rounded-full">Baru!</span>
+                @endif
+            </div>
+        </div>
 
-                        <a href="{{ route('homepage') }}"
-                             class="mt-6 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg
-                            hover:bg-blue-800">Kembali ke Homepage</a>
-                </div>
+        {{-- Informasi Buku --}}
+        <div class="space-y-4">
+            <h2 class="text-3xl font-extrabold text-[#4e342e]">{{ $buku->judul }}</h2>
+
+            <div class="space-y-2 text-sm text-[#3e2723]">
+                <p><span class="font-semibold">📚 Pengarang:</span> {{ $buku->pengarang }}</p>
+                <p><span class="font-semibold">🏷️ Kategori:</span> {{ $buku->kategori->nama_kategori }}</p>
+                <p><span class="font-semibold">🏢 Penerbit:</span> {{ $buku->penerbit->nama_penerbit }}</p>
+                <p><span class="font-semibold">📅 Tahun Terbit:</span> {{ $buku->tahun_terbit }}</p>
             </div>
 
+            <p class="text-gray-700 leading-relaxed text-sm">
+                Buku ini merupakan salah satu koleksi unggulan dari RI Library. Ditulis oleh penulis berpengalaman, buku ini menawarkan wawasan menarik dan cocok untuk semua kalangan pembaca.
+            </p>
 
-    </section>
- @endsection
+            {{-- Tombol Kembali --}}
+            <a href="{{ route('homepage') }}"
+                class="inline-block mt-4 bg-[#0b445e] text-white px-6 py-2 rounded-lg shadow hover:bg-[#37667b] transition duration-300">
+                ← Kembali ke Katalog
+            </a>
+        </div>
+    </div>
+</section>
 
+@endsection

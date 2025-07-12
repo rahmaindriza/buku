@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Aplikasi Manajemen Buku</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     @vite('resources/css/app.css')
@@ -15,6 +17,14 @@
         height: 100%;
         margin: 0;
     }
+
+    .material-symbols-rounded {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
 </style>
 
 @php
@@ -28,73 +38,87 @@
     }
 @endphp
 
-<body class="bg-gray-100 h-full">
+<body class="bg-[#e4f5fd] h-full">
     <div class="flex min-h-screen">
         {{-- sidebar --}}
-        <aside class="w-64 bg-gray-800 text-white flex flex-col">
-            <div class="p-4 text-center text-lg font-bold bg-gray-900">
-                PERPUSKU
-            </div>
-            <nav class="flex-1">
-                <ul class="space-y-2 p-4">
-                    <li>
-                        <a href="{{ route('dashboard')}}" class="flex items-center p-2 rounded hover:bg-gray-700">
-                            <span class="material-icons">dashboard</span>
-                            <span class="ml-3">Dashboard</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('kategori.index')}}" class="flex items-center p-2 rounded hover:bg-gray-700">
-                            <span class="material-icons">folder</span>
-                            <span class="ml-3">Kategori</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('penerbit.index')}}" class="flex items-center p-2 rounded hover:bg-gray-700">
-                            <span class="material-icons">newspaper</span>
-                            <span class="ml-3">Penerbit</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('buku.index')}}" class="flex items-center p-2 rounded hover:bg-gray-700">
-                            <span class="material-icons">menu_book</span>
-                            <span class="ml-3">Buku</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('anggota.index')}}" class="flex items-center p-2 rounded hover:bg-gray-700">
-                            <span class="material-icons">menu_book</span>
-                            <span class="ml-3">Anggota</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('peminjaman.index')}}" class="flex items-center p-2 rounded hover:bg-gray-700">
-                            <span class="material-icons">menu_book</span>
-                            <span class="ml-3">Peminjaman Buku</span>
-                        </a>
-                    </li>
+        <aside class="w-64 bg-[#2B3A55] text-white flex flex-col min-h-screen shadow-lg">
+    <!-- Logo/Brand -->
+    <div class="p-5 text-center text-2xl font-bold bg-[#1E2A3A] tracking-wide shadow">
+        PERPUSKU
+    </div>
 
-                    {{-- Hanya tampil jika user login dan role admin --}}
-                    @if(Auth::check() && Auth::user()->role === 'admin')
-                        <li>
-                            <a href="{{ route('user.index')}}" class="flex items-center p-2 rounded hover:bg-gray-700">
-                                <span class="material-icons">supervisor_account</span>
-                                <span class="ml-3">Data User</span>
-                            </a>
-                        </li>
-                    @endif
-                </ul>
-            </nav>
+    <!-- Navigasi -->
+    <nav class="flex-1 overflow-y-auto">
+        <ul class="space-y-1 p-4 text-sm font-medium">
+            <li>
+                <a href="{{ route('dashboard') }}"
+                   class="flex items-center gap-3 p-3 rounded-md hover:bg-[#1E2A3A] transition">
+                    <span class="material-symbols-rounded">dashboard</span>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('kategori.index') }}"
+                   class="flex items-center gap-3 p-3 rounded-md hover:bg-[#1E2A3A] transition">
+                    <span class="material-symbols-rounded">category</span>
+                    Kategori
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('penerbit.index') }}"
+                   class="flex items-center gap-3 p-3 rounded-md hover:bg-[#1E2A3A] transition">
+                    <span class="material-symbols-rounded">library_books</span>
+                    Penerbit
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('buku.index') }}"
+                   class="flex items-center gap-3 p-3 rounded-md hover:bg-[#1E2A3A] transition">
+                    <span class="material-symbols-rounded">menu_book</span>
+                    Buku
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('anggota.index') }}"
+                   class="flex items-center gap-3 p-3 rounded-md hover:bg-[#1E2A3A] transition">
+                    <span class="material-symbols-rounded">group</span>
+                    Anggota
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('peminjaman.index') }}"
+                   class="flex items-center gap-3 p-3 rounded-md hover:bg-[#1E2A3A] transition">
+                    <span class="material-symbols-rounded">import_contacts</span>
+                    Peminjaman Buku
+                </a>
+            </li>
 
-            @if (Auth::check())
-                <div class="p-4 text-center">
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded">Logout</button>
-                    </form>
-                </div>
+            @if(Auth::check() && Auth::user()->role === 'admin')
+            <li>
+                <a href="{{ route('user.index') }}"
+                   class="flex items-center gap-3 p-3 rounded-md hover:bg-[#1E2A3A] transition">
+                    <span class="material-symbols-rounded">supervisor_account</span>
+                    Data User
+                </a>
+            </li>
             @endif
-        </aside>
+        </ul>
+    </nav>
+
+    <!-- Logout -->
+    @if (Auth::check())
+    <div class="p-4 border-t border-white/10 bg-[#1E2A3A]">
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit"
+                    class="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white py-2 rounded-md transition text-sm font-semibold">
+                <span class="material-symbols-rounded">logout</span> Logout
+            </button>
+        </form>
+    </div>
+    @endif
+</aside>
+
 
         {{-- content header --}}
         <div class="flex-1 flex flex-col">
