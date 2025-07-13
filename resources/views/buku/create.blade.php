@@ -1,7 +1,7 @@
 @include('layout.header')
 
-<div class="max-w-3xl mx-auto bg-white shadow-xl rounded-xl p-8 mt-12 border border-gray-200">
-    <h3 class="text-3xl font-bold mb-6 text-[#5D4037] text-center">📚 Tambah Buku Baru</h3>
+<div class="max-w-3xl mx-auto bg-[#e4f5fd] shadow-xl rounded-xl p-8 mt-12 border border-gray-200">
+    <h3 class="text-3xl font-bold mb-6 text-[#0b445e] text-center">📚 Tambah Buku Baru</h3>
 
     <form action="{{ route('buku.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
@@ -87,7 +87,7 @@
         {{-- Tombol --}}
         <div class="text-center pt-4">
             <button type="submit"
-                class="bg-[#5D4037] hover:bg-[#4E342E] text-white font-semibold px-6 py-2 rounded-full shadow-md transition duration-300">
+                class="bg-[#0b445e] hover:bg-[#3d6b80] text-white font-semibold px-6 py-2 rounded-full shadow-md transition duration-300">
                 💾 Simpan Buku
             </button>
         </div>

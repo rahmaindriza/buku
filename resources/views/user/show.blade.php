@@ -2,7 +2,7 @@
 
 @section('content')
 <section class="max-w-3xl mx-auto px-4 py-8">
-    <div class="bg-white rounded-xl shadow-md p-6">
+    <div class="bg-[#e4f5fd] rounded-xl shadow-md p-6">
         <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-3">📋 Detail User</h2>
 
         <div class="space-y-4 text-base text-gray-700">

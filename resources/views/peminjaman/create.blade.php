@@ -1,6 +1,6 @@
 @include('layout.header')
 
-<div class="max-w-4xl mx-auto bg-white shadow-xl rounded-xl p-8 mt-10 border border-gray-200">
+<div class="max-w-4xl mx-auto bg-[#e4f5fd] shadow-xl rounded-xl p-8 mt-10 border border-gray-200">
     <h3 class="text-2xl font-bold text-center text-[#5D4037] mb-8">📚 Transaksi Peminjaman Buku</h3>
 
     <form action="{{ route('peminjaman.store') }}" method="POST" class="space-y-6">

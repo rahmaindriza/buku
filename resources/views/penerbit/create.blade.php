@@ -1,6 +1,6 @@
 @include('layout.header')
 
-<div class="max-w-xl mx-auto bg-white shadow-lg rounded-xl p-8 mt-12 border border-gray-200">
+<div class="max-w-xl mx-auto bg-[#e4f5fd] shadow-lg rounded-xl p-8 mt-12 border border-gray-200">
     <h3 class="text-2xl font-bold text-center text-[#5D4037] mb-6">🏢 Tambah Penerbit Baru</h3>
 
     <form action="{{ route('penerbit.store') }}" method="POST" class="space-y-5">
