@@ -25,6 +25,7 @@
             <thead class="bg-[#EFEBE9] text-[#4E342E]">
                 <tr>
                     <th class="px-4 py-2 border">No</th>
+                    <th class="px-4 py-2 border">Cover</th>
                     <th class="px-4 py-2 border text-left">Judul Buku</th>
                 </tr>
             </thead>
@@ -32,6 +33,13 @@
                 @foreach ($peminjaman->buku as $key => $buku)
                 <tr class="hover:bg-gray-50">
                     <td class="px-4 py-2 border text-center">{{ $key + 1 }}</td>
+                    <td class="px-4 py-2 border text-center">
+                        @if ($buku->cover)
+                            <img src="{{ asset('storage/' . $buku->cover) }}" alt="Cover" class="w-12 h-16 object-cover rounded mx-auto">
+                        @else
+                            <img src="{{ asset('img/default_cover.jpg') }}" alt="Default Cover" class="w-12 h-16 object-cover rounded mx-auto">
+                        @endif
+                    </td>
                     <td class="px-4 py-2 border">{{ $buku->judul }}</td>
                 </tr>
                 @endforeach

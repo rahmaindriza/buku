@@ -65,7 +65,7 @@ class FBukuController extends Controller
     $buku = $query->paginate(12);
 
     // ambil koleksi terbaru (10 buku terbaru dari database)
-    $koleksiTerbaru = Buku::latest()->take(10)->get();
+    $koleksiTerbaru = Buku::latest()->take(20)->get();
 
     $kategori = Kategori::all();
     $penerbit = Penerbit::all();

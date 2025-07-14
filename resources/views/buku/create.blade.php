@@ -40,13 +40,7 @@
                 @enderror
             </div>
 
-            {{-- Gambar Sampul --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Gambar Sampul</label>
-                <input type="file" name="file_cover"
-                    class="w-full rounded-lg border border-gray-300 focus:ring-[#5D4037] focus:border-[#5D4037] px-4 py-[7px] text-gray-700 bg-white">
-            </div>
-        </div>
+
 
         <div class="grid md:grid-cols-2 gap-6">
             {{-- Penerbit --}}
@@ -81,6 +75,14 @@
                 @error('kategori_id')
                     <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
                 @enderror
+            </div>
+        </div>
+
+        {{-- Gambar Sampul --}}
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Gambar Sampul</label>
+                <input type="file" name="file_cover"
+                    class="w-full rounded-lg border border-gray-300 focus:ring-[#5D4037] focus:border-[#5D4037] px-4 py-[7px] text-gray-700 bg-white">
             </div>
         </div>
 

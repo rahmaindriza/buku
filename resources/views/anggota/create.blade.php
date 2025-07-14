@@ -20,7 +20,7 @@
 
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Kelas</label>
-            <input type="text" name="kelas" placeholder="Contoh: XI RPL 2"
+            <input type="text" name="kelas" placeholder="Contoh: XI "
                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5D4037]">
         </div>
 
